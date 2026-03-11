@@ -24,8 +24,9 @@ PROVIDERS_REQUIRING_WORKSPACE_ACCESS = {
 @click.option(
     "--provider", default=DEFAULT_PROVIDER, help=f"Provider to use (default: {DEFAULT_PROVIDER})"
 )
+@click.option("--port", default=SERVER_PORT, help=f"Server port to use (default: {SERVER_PORT})")
 @click.option("--yolo", is_flag=True, help="Skip workspace trust confirmation")
-def launch(agents, session_name, headless, provider, yolo):
+def launch(agents, session_name, headless, provider, port, yolo):
     """Launch cao session with specified agent profile."""
     try:
         # Validate provider
@@ -50,7 +51,7 @@ def launch(agents, session_name, headless, provider, yolo):
                 raise click.ClickException("Launch cancelled by user")
 
         # Call API to create session
-        url = f"http://{SERVER_HOST}:{SERVER_PORT}/sessions"
+        url = f"http://{SERVER_HOST}:{port}/sessions"
         params = {
             "provider": provider,
             "agent_profile": agents,

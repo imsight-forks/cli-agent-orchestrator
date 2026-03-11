@@ -146,6 +146,9 @@ cao launch --agents code_supervisor --provider codex
 cao launch --agents code_supervisor --provider gemini_cli
 # Skip workspace trust confirmation
 cao launch --agents code_supervisor --yolo
+
+# Or specify a custom server port
+cao launch --agents code_supervisor --port 8080
 ```
 
 The supervisor will coordinate and delegate tasks to worker agents (developer, reviewer, etc.) as needed using the orchestration patterns.
@@ -251,7 +254,7 @@ Example: Multi-role feature development
 
 ### Custom Orchestration
 
-The `cao-server` runs on `http://localhost:9889` by default and exposes REST APIs for session management, terminal control, and messaging. The CLI commands (`cao launch`, `cao shutdown`) and MCP server tools (`handoff`, `assign`, `send_message`) are just examples of how these APIs can be packaged together.
+The `cao-server` runs on `http://localhost:9889` by default and exposes REST APIs for session management, terminal control, and messaging. You can change the server port using the `CAO_PORT` environment variable or the `--port` option when launching agents. The CLI commands (`cao launch`, `cao shutdown`) and MCP server tools (`handoff`, `assign`, `send_message`) are just examples of how these APIs can be packaged together.
 
 You can combine the three orchestration modes above into custom workflows, or create entirely new orchestration patterns using the underlying APIs to fit your specific needs.
 

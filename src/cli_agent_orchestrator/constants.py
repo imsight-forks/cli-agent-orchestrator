@@ -8,6 +8,7 @@ Codex, Q CLI) through tmux sessions, providing a unified interface
 for agent management.
 """
 
+import os
 from pathlib import Path
 
 from cli_agent_orchestrator.models.provider import ProviderType
@@ -87,7 +88,7 @@ DATABASE_URL = f"sqlite:///{DATABASE_FILE}"
 # =============================================================================
 # FastAPI server settings for the CAO API
 SERVER_HOST = "localhost"
-SERVER_PORT = 9889
+SERVER_PORT = int(os.getenv("CAO_PORT", "9889"))
 SERVER_VERSION = "0.1.0"
 API_BASE_URL = f"http://{SERVER_HOST}:{SERVER_PORT}"
 
